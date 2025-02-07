@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Navigation System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #48a2c7 0%, #2c5282 100%);
+            min-height: 100vh;
+        }
+        .animate-bounce-slow {
+            animation: bounce 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto px-4 py-12 min-h-screen flex flex-col items-center justify-center">
+        <!-- Main Content -->
+        <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full mx-4">
+            <div class="text-center mb-8">
+                <i class="bi bi-geo-alt text-6xl text-blue-600 animate-bounce-slow"></i>
+                <h1 class="text-3xl font-bold mt-4 text-gray-800">Hey, are you lost?!</h1>
+                <p class="text-xl text-gray-600 mt-2">Where are you finding your place?</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- Inside Campus Button -->
+                <button onclick="navigateTo('campus')" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-6 rounded-lg transition duration-300 ease-in-out flex items-center justify-center gap-2">
+                    <i class="bi bi-buildings text-2xl"></i>
+                    <span>Inside Campus</span>
+                </button>
+
+                <!-- Inside Building Button -->
+                <button onclick="navigateTo('building')" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-4 px-6 rounded-lg transition duration-300 ease-in-out flex items-center justify-center gap-2">
+                    <i class="bi bi-building text-2xl"></i>
+                    <span>Inside Building</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Hidden Sections -->
+        <div id="campusSection" class="hidden bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full mx-4 mt-8">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">Campus Navigation</h2>
+            <div class="space-y-3">
+                <button class="w-full text-left p-4 bg-gray-100 hover:bg-gray-200 rounded-lg transition">Main Building</button>
+                <button class="w-full text-left p-4 bg-gray-100 hover:bg-gray-200 rounded-lg transition">Library</button>
+                <button class="w-full text-left p-4 bg-gray-100 hover:bg-gray-200 rounded-lg transition">Cafeteria</button>
+                <button class="w-full text-left p-4 bg-gray-100 hover:bg-gray-200 rounded-lg transition">Sports Complex</button>
+            </div>
+            <button onclick="goBack()" class="mt-4 text-blue-600 hover:text-blue-800 flex items-center gap-2">
+                <i class="bi bi-arrow-left"></i> Back
+            </button>
+        </div>
+
+        <div id="buildingSection" class="hidden bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full mx-4 mt-8">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">Building Navigation</h2>
+            <div class="space-y-3">
+                <button class="w-full text-left p-4 bg-gray-100 hover:bg-gray-200 rounded-lg transition">Ground Floor</button>
+                <button class="w-full text-left p-4 bg-gray-100 hover:bg-gray-200 rounded-lg transition">First Floor</button>
+                <button class="w-full text-left p-4 bg-gray-100 hover:bg-gray-200 rounded-lg transition">Second Floor</button>
+                <button class="w-full text-left p-4 bg-gray-100 hover:bg-gray-200 rounded-lg transition">Labs</button>
+            </div>
+            <button onclick="goBack()" class="mt-4 text-blue-600 hover:text-blue-800 flex items-center gap-2">
+                <i class="bi bi-arrow-left"></i> Back
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function navigateTo(section) {
+            // Hide all sections first
+            document.getElementById('campusSection').classList.add('hidden');
+            document.getElementById('buildingSection').classList.add('hidden');
+
+            // Show selected section
+            if (section === 'campus') {
+                document.getElementById('campusSection').classList.remove('hidden');
+            } else if (section === 'building') {
+                document.getElementById('buildingSection').classList.remove('hidden');
+            }
+        }
+
+        function goBack() {
+            // Hide all sections
+            document.getElementById('campusSection').classList.add('hidden');
+            document.getElementById('buildingSection').classList.add('hidden');
+        }
+    </script>
+<script>document.body.addEventListener('wheel', e => { if (!e.ctrlKey) return; e.preventDefault(); return }, { passive: false })</script>
+	</body>
+</html>
